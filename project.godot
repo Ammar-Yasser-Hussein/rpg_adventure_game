@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="RPG_adventure_game"
+run/main_scene="uid://clmqhk6n3clh7"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/stretch/scale=4.0
 
 [editor_plugins]
 
@@ -24,4 +29,5 @@ enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
