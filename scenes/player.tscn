@@ -416,7 +416,12 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
 radius = 5.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_qhqgy"]
+radius = 13.0
+
 [node name="player" type="CharacterBody2D" unique_id=477125768]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_g2els")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2049092437]
@@ -426,3 +431,22 @@ animation = &"front_idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=141388568]
 position = Vector2(0, 13)
 shape = SubResource("CircleShape2D_g2els")
+
+[node name="player_hit_box" type="Area2D" parent="." unique_id=1117305593]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_hit_box" unique_id=1647999237]
+position = Vector2(0, 9)
+shape = SubResource("CircleShape2D_qhqgy")
+
+[node name="attack_cooldown" type="Timer" parent="." unique_id=915659556]
+one_shot = true
+
+[node name="deal_attack_timer" type="Timer" parent="." unique_id=537629876]
+wait_time = 0.5
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1944149334]
+
+[connection signal="body_entered" from="player_hit_box" to="." method="_on_player_hit_box_body_entered"]
+[connection signal="body_exited" from="player_hit_box" to="." method="_on_player_hit_box_body_exited"]
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="deal_attack_timer" to="." method="_on_deal_attack_timer_timeout"]
